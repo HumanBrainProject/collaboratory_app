@@ -14,6 +14,7 @@ import os
 import dj_database_url
 import hbp_app_python_auth
 import hbp_app_python_auth.settings as auth_settings
+import requests
 from os.path import join, dirname
 from dotenv import load_dotenv
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # ADD social auth app
     'social.apps.django_app.default',
+    'jsonify',
     'collaboratory_app',
 ]
 
@@ -133,7 +135,6 @@ STATIC_URL = '/static/'
 # Customize authentication informations
 
 BASE_URL_PREFIX = '/'
-HBP_ENV = os.environ.get('HBP_ENV')
 LOGIN_URL = '/%slogin/hbp' % BASE_URL_PREFIX
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'local_settings', 'email']
 auth_settings.SOCIAL_AUTH_HBP_KEY = os.environ.get('HBP_OIDC_CLIENT_ID')
@@ -143,7 +144,7 @@ auth_settings.SOCIAL_AUTH_HBP_SECRET = os.environ.get('HBP_OIDC_CLIENT_SECRET')
 auth_settings.SUPER_USER_NAMES = []
 # users that can access admin interface
 auth_settings.STAFF_USER_NAMES = []
-auth_settings.ENV = HBP_ENV
+auth_settings.ENV = 'production'
 
 # Configure available backends
 AUTHENTICATION_BACKENDS = (
@@ -158,3 +159,9 @@ AUTHENTICATION_BACKENDS = (
 CSRF_COOKIE_NAME = 'clbapp_csfrtoken'
 # and the session ID
 SESSION_COOKIE_NAME = 'clbapp_sessionid'
+
+
+# load the HBP settings on startup
+# not ideal but that's a quick caching solution
+HBP_CONFIG = requests.get('https://collab.humanbrainproject.eu/config.json').json()
+HBP_CONFIG['auth']['clientId'] = os.environ.get('HBP_OIDC_CLIENT_ID')

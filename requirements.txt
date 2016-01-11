@@ -5,3 +5,5 @@ PyYAML==3.10
 django-sslserver==0.18
 python-dotenv==0.3.0
 dj-database-url==0.3.0
+requests==2.9.1
+django-jsonify==0.3.0

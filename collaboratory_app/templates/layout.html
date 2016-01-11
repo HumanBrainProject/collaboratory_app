@@ -1,11 +1,30 @@
+{% load jsonify %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Collaboratory Application</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/static/lib/hbp-collaboratory-theme/dist/css/bootstrap.min.css" charset="utf-8">
   </head>
   <body>
     {% block content %}{% endblock %}
+
+    <script type="text/javascript">
+    // Load the environment configuration for the client side scripts.
+    window.bbpConfig = {{ config | jsonify }}
+    </script>
+    <!-- standard scripts for a HBP aware application -->
+    <script src="/static/lib/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="/static/lib/lodash/lodash.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular/angular.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-bbp-config/angular-bbp-config.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-bootstrap/ui-bootstrap-tpls.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-resource/angular-resource.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
+    <script src="/static/lib/bbp-oidc-client/angular-bbp-oidc-client.js" charset="utf-8"></script>
+    <script src="/static/lib/marked-hbp/marked.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-hbp-common/dist/angular-hbp-common.min.js" charset="utf-8"></script>
   </body>
 </html>
