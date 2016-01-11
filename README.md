@@ -11,24 +11,40 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-
 ### Trust SSL certificate
 
-You also need to *trust the SSL certificate* in ssl/localhost.crt. Even better
-is to replace it with your own.
-
+You also need to *trust the SSL certificate* in
+ssl/localhost.crt. Even better is to replace it with your own.  The
+procedure for generating a self-signed certificate is readily
+available on-line.
 
 ### Create a new HBP OpenID Connect client
 
-Ensure that the scopes hbp.collab, hbp.document and hbp.notification.self are checked.
+The OpenID Connect Client Manager can be found in the Collaboratory at this url:
 
 https://collab.humanbrainproject.eu/#/collab/54/nav/1051
 
+Ensure that the scopes hbp.collab, hbp.document and hbp.notification.self are checked.
+
+Save the "Client ID" and "Client Secret" values for the next step.
 
 ### Define your environment
 
-Copy .env-sample to .env and enter proper values for security fields using
-the data collected in the previous step.
+Copy .env-sample to .env
+
+Replace SECRET_KEY with the output of the following command:
+
+OSX:
+```bash
+date | md5
+```
+Linux or Cygwin:
+```bash
+date | md5sum
+```
+
+Replace `HBP_OIDC_CLIENT*` with the data collected from the OpenID Connect Client Manager in the previous step.
+
 
 ```bash
 cp .env-sample .env
