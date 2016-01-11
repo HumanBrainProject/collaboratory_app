@@ -1,0 +1,9 @@
+PyYAML==3.10
+argparse==1.2.1
+httplib2==0.8
+mechanize==0.2.5
+ordereddict==1.1
+python-dateutil==2.2
+requests==2.5.1
+bbp-services==0.0.11
+task-types==0.0.10

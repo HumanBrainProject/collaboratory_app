@@ -1,0 +1,17 @@
+MANIFEST.in
+README.txt
+requirements.txt
+setup.cfg
+setup.py
+task_types/MimeTypes.py
+task_types/TaskOps.py
+task_types/TaskTypes.py
+task_types/__init__.py
+task_types/jsoncodec.py
+task_types/serialization.py
+task_types/version.py
+task_types.egg-info/PKG-INFO
+task_types.egg-info/SOURCES.txt
+task_types.egg-info/dependency_links.txt
+task_types.egg-info/requires.txt
+task_types.egg-info/top_level.txt

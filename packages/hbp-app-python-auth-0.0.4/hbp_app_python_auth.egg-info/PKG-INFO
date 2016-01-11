@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: hbp-app-python-auth
+Version: 0.0.4
+Summary: hbp collaboratory python oauth2 module
+Home-page: http://bluebrain.epfl.ch
+Author: bbp platform team
+Author-email: bbp-ou-platformdev@epfl.ch
+License: BBP-internal-confidential
+Description: UNKNOWN
+Platform: UNKNOWN

@@ -1,0 +1,2 @@
+include requirements.txt
+recursive-include bbp_services/data *.yaml

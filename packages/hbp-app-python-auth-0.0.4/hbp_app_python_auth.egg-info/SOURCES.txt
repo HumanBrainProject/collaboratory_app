@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+requirements.txt
+setup.cfg
+setup.py
+hbp_app_python_auth/__init__.py
+hbp_app_python_auth/auth.py
+hbp_app_python_auth/settings.py
+hbp_app_python_auth/tests.py
+hbp_app_python_auth/version.py
+hbp_app_python_auth.egg-info/PKG-INFO
+hbp_app_python_auth.egg-info/SOURCES.txt
+hbp_app_python_auth.egg-info/dependency_links.txt
+hbp_app_python_auth.egg-info/requires.txt
+hbp_app_python_auth.egg-info/top_level.txt
