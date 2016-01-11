@@ -38,7 +38,16 @@ def __get_session_expiry_age(request):
 def show(request):
     '''Render the wiki page using the provided context query parameter'''
     context = UUID(request.GET.get('ctx'))
-    return render_to_response('show.html', {'context': context, 'config': __hbp_config(request)})
+    instance = CollaboratoryContext.objects.get(ctx=context)
+    try:
+        instance = CollaboratoryContext.objects.get(ctx=context)
+    except WikiPage.DoesNotExist:
+        instance = None
+    return render(request, 'show.html', {
+        'context': context,
+        'model': instance,
+        'config': __hbp_config(request)
+    })
 
 
 @never_cache
