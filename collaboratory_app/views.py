@@ -1,10 +1,15 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.conf import settings
 from hbp_app_python_auth.auth import get_access_token, get_token_type, get_auth_header
 from social.apps.django_app.default.models import UserSocialAuth
 from uuid import UUID
+
+from .forms import EditForm
+from .models import CollaboratoryContext
+
+import bleach
 
 
 def __hbp_config(request):
@@ -41,4 +46,25 @@ def show(request):
 def edit(request):
     '''Render the wiki edit form using the provided context query parameter'''
     context = UUID(request.GET.get('ctx'))
-    return render_to_response('edit.html', {'context': context, 'config': __hbp_config(request)})
+
+    # get or build the instance
+    try:
+        instance = CollaboratoryContext.objects.get(ctx=context)
+    except CollaboratoryContext.DoesNotExist:
+        instance = CollaboratoryContext(ctx=context)
+
+    if request.method == 'POST':
+        form = EditForm(request.POST, instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            # Clean up user input
+            instance.comment = bleach.clean(instance.comment)
+            instance.save()
+    else:
+        form = EditForm(instance=instance)
+
+    return render(request, 'edit.html', {
+        'form': form,
+        'context': context,
+        'config': __hbp_config(request)
+    })
