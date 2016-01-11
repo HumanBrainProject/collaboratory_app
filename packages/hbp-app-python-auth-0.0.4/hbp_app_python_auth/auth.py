@@ -23,7 +23,6 @@ def get_access_token(social_auth):
     has not expired, or refreshing it if so.'''
 
     access_token = social_auth.extra_data['access_token']
-    refresh_token = social_auth.extra_data['refresh_token']
     decoded_token = jwt_decode(access_token, options={'verify_signature': False,
                                                       'verify_nbf': False,
                                                       'verify_exp': False,
@@ -31,11 +30,15 @@ def get_access_token(social_auth):
     expires_on = decoded_token['exp']
 
     if expires_on - 60 <= int(time.time()):
-        backend = social_auth.get_backend_instance()
-        new_token_response = backend.refresh_token(token=refresh_token)
-        access_token = new_token_response['access_token']
-        social_auth.extra_data['access_token'] = access_token
-        social_auth.save()
+        if 'refresh_token' in social_auth.extra_data:
+            refresh_token = social_auth.extra_data['refresh_token']
+            backend = social_auth.get_backend_instance()
+            new_token_response = backend.refresh_token(token=refresh_token)
+            access_token = new_token_response['access_token']
+            social_auth.extra_data['access_token'] = access_token
+            social_auth.save()
+        else:
+            return
 
     return access_token
 
