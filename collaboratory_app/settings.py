@@ -165,3 +165,5 @@ SESSION_COOKIE_NAME = 'clbapp_sessionid'
 # not ideal but that's a quick caching solution
 HBP_CONFIG = requests.get('https://collab.humanbrainproject.eu/config.json').json()
 HBP_CONFIG['auth']['clientId'] = os.environ.get('HBP_OIDC_CLIENT_ID')
+
+HBP_COLLAB_SERVICE_URL = HBP_CONFIG['api']['collab']['v0']
