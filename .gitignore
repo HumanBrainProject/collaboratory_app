@@ -1,0 +1,6 @@
+*.pyc
+*.pyo
+/venv
+/platform_venv
+*.sqlite3
+/.env

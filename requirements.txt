@@ -1,0 +1,7 @@
+python-social-auth==0.2.13
+PyJWT==1.4
+Django==1.9.1
+PyYAML==3.10
+django-sslserver==0.18
+python-dotenv==0.3.0
+dj-database-url==0.3.0
