@@ -1,0 +1,49 @@
+{
+  "name": "angular-hbp-document-client",
+  "version": "0.5.0",
+  "authors": [
+    "BBP/EPFL"
+  ],
+  "repository": {
+    "url": "git+ssh://bbpcode.epfl.ch/platform/JSLibAngularDocumentClient",
+    "type": "git"
+  },
+  "description": "AngularJS client library to access the HBP Collaboratory Storage",
+  "main": [
+    "dist/angular-hbp-document-client.js",
+    "dist/angular-hbp-document-client.css",
+    "dist/scss/angular-hbp-document-client.scss"
+  ],
+  "keywords": [
+    "angular",
+    "library",
+    "hbp",
+    "document",
+    "service",
+    "client",
+    "document"
+  ],
+  "license": "© 2014, BBP/EPFL, all rights reserved.",
+  "homepage": "https://bbpcode.epfl.ch/code/#/admin/projects/platform/JSLibAngularDocumentClient",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-hbp-common": "~2.0.0",
+    "angular-bbp-config": "~0.3.0",
+    "bbp-oidc-client": "~0.8.1",
+    "hbp-collaboratory-theme": "~0.0.12",
+    "lodash": "~3.10.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.7"
+  },
+  "resolutions": {
+    "angular": "~1.4.7"
+  }
+}

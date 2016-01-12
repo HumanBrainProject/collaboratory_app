@@ -1,0 +1,52 @@
+.hbp-drop-zone {
+
+    border: 2px dashed $hbp-color-border;
+    padding: 30px 20px;
+    margin-bottom: $line-height-computed;
+    text-align: center;
+    color: $hbp-color-grey-light-text;
+
+    span {
+        display: block;
+    }
+
+    .hbp-drop-zone-btn-file {
+        position: relative;
+        margin-top: 10px;
+        pointer-events: all;
+
+        & > input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 999px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    }
+
+    & > * {
+        pointer-events: none;
+    }
+}
+
+.hbp-drop-zone.hbp-drop-zone-drag-enter {
+    background-color: $hbp-color-shadow-lighter;
+    border-color: darken($hbp-color-border, 10);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.hbp-drop-zone.hbp-drop-zone-drag-leave {
+    background-color: transparent;
+    border-color: $hbp-color-border;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}

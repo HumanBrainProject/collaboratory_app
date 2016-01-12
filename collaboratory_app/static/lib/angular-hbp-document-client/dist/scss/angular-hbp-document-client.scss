@@ -1,0 +1,17 @@
+@import "hbp-collaboratory-theme/dist/sass/bootstrap/_variables";
+@import "hbp-collaboratory-theme/dist/sass/_variables";
+
+
+// Define deprecated variables which were defined
+// in angular-hbp-common before version 1.0.0.
+$hbp-color-border:          #CCC !default;
+$hbp-color-highlight:       #FFE !default;
+$hbp-color-grey-light-text: #BBB !default;
+$hbp-color-grey-text:       #888 !default;
+$gray-dark:                 #222 !default;
+$hbp-color-pms185:          #004a97 !default;  // blue: PMS 2945 rgb(0,74,151)
+$hbp-color-shadow-lighter:  rgba(0, 0, 0, 0.075) !default;
+
+@import "./components/mini-browser";
+@import "./components/file-browser";
+@import "./components/file-upload-area";
