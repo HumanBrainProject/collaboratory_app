@@ -17,6 +17,7 @@ import requests
 def __hbp_config(request):
     conf = settings.HBP_CONFIG
     conf['auth']['token'] = __get_client_token(request)
+    return conf
 
 
 def __get_client_token(request):
