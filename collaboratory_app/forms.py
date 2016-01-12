@@ -11,6 +11,6 @@ class EditForm(forms.ModelForm):
             'ctx': forms.HiddenInput(),
             'comment': forms.TextInput(attrs={
                 'class': 'form-control',
-                'ng-model': 'model.comment',
+                'ng-model': 'vm.model.comment',
             })
         }

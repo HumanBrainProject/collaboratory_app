@@ -19,8 +19,7 @@ class CollaboratoryContext(models.Model):
     # so we add a method that retrieve a more convenient dict.
     def as_json(self):
         return {
-            'title': self.title,
-            'text': self.text,
+            'comment': self.comment,
             'ctx': str(self.ctx),
         }
 
