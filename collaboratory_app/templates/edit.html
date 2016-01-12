@@ -6,9 +6,15 @@
         <h1>Edit Template</h1>
     </header>
 
-    <section role="content">
-      <form action="" class="wiki-form" method="POST">
-        <div class="wiki-form-fields">
+    <section role="content" ng-controller="EditController as vm">
+      <div class="xkcd" ng-if="vm.xkcdData">
+        {% verbatim %}
+        <h2>{{vm.xkcdData.title}}</h2>
+        <img src="" ng-src="{{vm.xkcdData.img}}" ng-alt="{{vm.xkcdData.data}}" />
+        {% endverbatim %}
+      </div>
+      <form action="" class="" method="POST">
+        <div class="">
             {% csrf_token %}
             {{ form.non_field_errors }}
             {{ form.ctx }}
@@ -16,6 +22,11 @@
                 {{ form.comment.label_tag }}
                 {{ form.comment }}
                 <p class="help-text">{{ form.comment.errors }}</p>
+            </div>
+            <div class="form-group">
+                {{ form.xkcd_num.label_tag }}
+                {{ form.xkcd_num }}
+                <p class="help-text">{{ form.xkcd_num.errors }}</p>
             </div>
         </div>
 

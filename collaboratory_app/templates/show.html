@@ -6,8 +6,10 @@
         <h1>Show Template</h1>
     </header>
 
-    <section role="content">
-        <p>{{model.comment}}</p>
+    <section role="content" ng-controller="ShowController as vm">
+      <h2>{{xkcd.title}}</h2>
+      <img src="{{xkcd.img}}" alt="{{xkcd.alt}}" />
+      <p>{{model.comment}}</p>
     </section>
 </main>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.conf import settings
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse
 from hbp_app_python_auth.auth import get_access_token, get_token_type, get_auth_header
 from social.apps.django_app.default.models import UserSocialAuth
 from uuid import UUID
@@ -12,6 +12,8 @@ from .models import CollaboratoryContext
 
 import bleach
 import requests
+import random
+import json
 
 
 def __hbp_config(request):
@@ -23,8 +25,11 @@ def __hbp_config(request):
 def __get_client_token(request):
     try:
         social_auth = request.user.social_auth.get()
+        token = get_access_token(social_auth)
+        if not token:
+            return
         return {
-            'access_token': get_access_token(social_auth),
+            'access_token': token,
             'token_type': get_token_type(social_auth),
             'expires_in': __get_session_expiry_age(request),
         }
@@ -67,10 +72,14 @@ def show(request):
         instance = CollaboratoryContext.objects.get(ctx=context)
     except WikiPage.DoesNotExist:
         instance = None
+
+    xkcd_data = requests.get('http://xkcd.com/%i/info.0.json' % instance.xkcd_num).json()
+
     return render(request, 'show.html', {
         'context': context,
         'model': instance,
-        'config': __hbp_config(request)
+        'config': __hbp_config(request),
+        'xkcd': xkcd_data,
     })
 
 
@@ -106,8 +115,20 @@ def edit(request):
     else:
         form = EditForm(instance=instance)
 
+    config = __hbp_config(request)
+    config['local'] = {'model': instance.as_json()}
+
     return render(request, 'edit.html', {
         'form': form,
         'context': context,
-        'config': __hbp_config(request)
+        'config': config,
     })
+
+
+def random_xkcd(request):
+    data = requests.get('http://xkcd.com/info.0.json').json()
+    max = data['num']
+    num = random.randint(1, max)
+
+    xkcd_data = requests.get('http://xkcd.com/%i/info.0.json' % num).json()
+    return HttpResponse(json.dumps(xkcd_data), content_type='application/json')

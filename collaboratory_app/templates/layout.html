@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/static/lib/hbp-collaboratory-theme/dist/css/bootstrap.min.css" charset="utf-8">
     <link rel="stylesheet" href="/static/lib/angular-hbp-document-client/dist/angular-hbp-document-client.min.css" charset="utf-8">
   </head>
-  <body>
+  <body ng-app="XkcdApp">
     {% block content %}{% endblock %}
 
     <script type="text/javascript">
@@ -26,7 +26,10 @@
     <script src="/static/lib/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
     <script src="/static/lib/bbp-oidc-client/angular-bbp-oidc-client.js" charset="utf-8"></script>
     <script src="/static/lib/marked-hbp/marked.min.js" charset="utf-8"></script>
-    <script src="/static/lib/angular-hbp-common/dist/angular-hbp-common.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-hbp-common/dist/angular-hbp-common.js" charset="utf-8"></script>
     <script src="/static/lib/angular-hbp-document-client/dist/angular-hbp-document-client.min.js" charset="utf-8"></script>
+
+    <!-- app scripts -->
+    <script src="/static/assets/app.js" charset="utf-8"></script>
   </body>
 </html>

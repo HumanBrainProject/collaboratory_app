@@ -8,6 +8,7 @@ class CollaboratoryContext(models.Model):
 
     ctx = models.UUIDField(unique=True)
     comment = models.CharField(max_length=140, unique=True)
+    xkcd_num = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -21,6 +22,7 @@ class CollaboratoryContext(models.Model):
         return {
             'comment': self.comment,
             'ctx': str(self.ctx),
+            'xkcd_num': self.xkcd_num,
         }
 
     def __unicode__(self):

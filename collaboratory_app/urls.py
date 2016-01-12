@@ -22,4 +22,5 @@ urlpatterns = [
     url('', include('social.apps.django_app.urls', namespace='social')),
     url(r'^$', views.show, name='clbctx_show'),
     url(r'^edit/$', views.edit, name='clbctx_edit'),
+    url(r'^random_xkcd$', views.random_xkcd)
 ]
