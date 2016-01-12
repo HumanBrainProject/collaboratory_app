@@ -8,7 +8,6 @@
 virtualenv venv
 . venv/bin/activate
 pip install -r requirements.txt
-python manage.py migrate
 ```
 
 ### Trust SSL certificate
@@ -53,6 +52,14 @@ Replace `HBP_OIDC_CLIENT*` with the data collected from the OpenID Connect Clien
 
 ```bash
 cp .env-sample .env
+```
+
+### Create the database
+
+You can now run the migration in order to bootstrap the database.
+
+```bash
+python manage.py migrate
 ```
 
 ### Start the server
